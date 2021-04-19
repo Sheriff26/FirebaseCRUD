@@ -126,7 +126,7 @@
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/update"
@@ -139,5 +139,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rl_password"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:background="@drawable/bg_button"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_update"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

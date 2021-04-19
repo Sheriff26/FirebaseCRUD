@@ -10,11 +10,14 @@ interface DetailProdukContract {
         fun onError(message: String)
         fun onGetData(produk: Produk, id: String?)
         fun onSuccess(message: String)
+        fun onSuccessDelete(message: String)
         fun onProcess(boolean: Boolean)
     }
 
     interface Presenter : BasePresenter {
         fun getProduk(kodeProduk: String?)
+        fun updateProduk(idProduk: String, produk: Produk)
+        fun deleteProduk(idProduk: String)
     }
 
 }

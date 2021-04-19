@@ -79,4 +79,29 @@ class DetailProdukPresenter(var view: DetailProdukContract.View?) : DetailProduk
 
     }
 
+    override fun updateProduk(idProduk: String, produk: Produk) {
+        view?.onProcess(true)
+        val ref : DatabaseReference = FirebaseDatabase.getInstance().getReference("Produk")
+        ref.child(idProduk).setValue(produk).addOnSuccessListener {
+            view?.onSuccess("Success")
+            view?.onProcess(false)
+        }.addOnFailureListener {
+            view?.onError(it.message!!)
+            view?.onProcess(false)
+        }
+
+    }
+
+    override fun deleteProduk(idProduk: String) {
+        view?.onProcess(true)
+        val ref : DatabaseReference = FirebaseDatabase.getInstance().getReference("Produk")
+        ref.child(idProduk).removeValue().addOnSuccessListener {
+            view?.onSuccessDelete("Success")
+            view?.onProcess(false)
+        }.addOnFailureListener {
+            view?.onError(it.message!!)
+            view?.onProcess(false)
+        }
+    }
+
 }
