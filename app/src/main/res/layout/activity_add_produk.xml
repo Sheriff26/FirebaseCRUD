@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".feature.addproduk.AddProdukActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/preview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_txt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center_horizontal"
+        android:text="Tambah Produk"
+        android:textAlignment="center"
+        android:textColor="@color/purple_700"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <EditText
+        android:id="@+id/et_kode_produk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:hint="Kode Produk"
+        android:inputType="text"
+        android:padding="15dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_txt_login" />
+
+    <EditText
+        android:id="@+id/et_nama_produk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:hint="Nama Produk"
+        android:inputType="text"
+        android:padding="15dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/et_kode_produk" />
+
+    <EditText
+        android:id="@+id/et_harga_produk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:hint="Harga Produk"
+        android:inputType="number"
+        android:padding="15dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/et_nama_produk" />
+
+    <EditText
+        android:id="@+id/et_jumlah_produk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:hint="Jumlah Produk"
+        android:inputType="number"
+        android:padding="15dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/et_harga_produk" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_tambah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_button"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Tambah"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_jumlah_produk" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
