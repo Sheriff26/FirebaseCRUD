@@ -2,6 +2,8 @@ package com.magangonline.magang1.feature.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +17,17 @@ import com.magangonline.magang1.feature.addproduk.AddProdukActivity
 import com.magangonline.magang1.feature.detailproduk.DetailProdukActivity
 import com.magangonline.magang1.model.Produk
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(), HomeContract.View {
 
     override lateinit var presenter: HomeContract.Presenter
     private var loading: AlertDialog? = null
     private var produkAdapter: ProdukAdapter? = null
+
+    private var listProduk : ArrayList<Produk>? = null
+    private var searchListProduk : ArrayList<Produk>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +50,54 @@ class HomeFragment : Fragment(), HomeContract.View {
             startActivity(Intent(requireContext(), AddProdukActivity::class.java))
         }
 
+        search.addTextChangedListener(onSearchChange())
+
+    }
+
+    private fun onSearchChange() : TextWatcher{
+        return object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchListProduk = ArrayList()
+                if (s?.isEmpty()!!) {
+                    searchListProduk = listProduk
+                } else {
+                    searchListProduk = filterProduk(s.toString())
+                }
+                val onClickItem = object : ProdukAdapter.OnClickItem {
+                    override fun onClickItem(data: Produk) {
+                        startActivity(Intent(requireContext(), DetailProdukActivity::class.java)
+                            .putExtra("kode", data.kode_produk)
+                        )
+                    }
+
+                }
+                produkAdapter = ProdukAdapter(searchListProduk, requireContext(), onClickItem)
+                rv_produk.adapter = produkAdapter
+                rv_produk.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        }
+    }
+
+    private fun filterProduk(search: String) : ArrayList<Produk> {
+        val result: ArrayList<Produk> = ArrayList()
+        if (listProduk?.size != null && listProduk?.size != 0){
+            for (i in listProduk?.indices!!){
+                if (listProduk!!.get(i).nama_produk.toLowerCase(Locale.ROOT).contains(search.toLowerCase(Locale.ROOT))){
+                    result.add(listProduk!![i])
+                }
+            }
+        }
+        return result
     }
 
     override fun onError(message: String) {
@@ -50,6 +105,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun onSuccess(produk: ArrayList<Produk>) {
+        listProduk = produk
         val onClickItem = object : ProdukAdapter.OnClickItem {
             override fun onClickItem(data: Produk) {
                 startActivity(Intent(requireContext(), DetailProdukActivity::class.java)
